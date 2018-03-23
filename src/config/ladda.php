@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'name' => '提交'
+    'name' => '提 交',
+    'style' => 'expand-right'
 ];
