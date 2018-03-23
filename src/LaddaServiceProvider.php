@@ -16,13 +16,31 @@ class LaddaServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // 发布静态资源文件
         $this->publishes([
             __DIR__.'/resources/statics' => public_path('statics'),
         ], 'public');
+
+        // 发布 前端页面 组件
+        $this->publishes([
+            __DIR__.'/resources/views' => resource_path('views/vendor/ladda'),
+        ]);
+
+        // 发布配置项
+        $this->publishes([
+            __DIR__.'/config/ladda.php' => config_path('ladda.php'),
+        ]);
+
         $kernel = $this->app[Kernel::class];
         $kernel->pushMiddleware(LaravelLadda::class);
+
+        // 自定义 ladda 标签
         Blade::directive('ladda', function ($expression) {
-            return file_get_contents(resource_path('verdor/ladda/submit.blade.php'));
+            // 如果指定 name  则使用指定的 name 否则使用配置项中的默认值
+            $name = empty($expression) ? config('ladda.name') : $expression;
+            // 获取 html 标签
+            $html = file_get_contents(resource_path('views/vendor/ladda/submit.blade.php'));
+            return str_replace('#submit#', $name, $html);
         });
     }
 
