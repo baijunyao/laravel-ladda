@@ -1,0 +1,1 @@
+<button class="js-laravel-ladda" data-style="expand-right" type="submit"><span class="ladda-label">提交</span></button>

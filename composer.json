@@ -1,0 +1,25 @@
+{
+    "name": "baijunyao/laravel-ladda",
+    "description": "ladda",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "baijunyao",
+            "email": "baijunyao@baijunyao.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Baijunyao\\LaravelLadda\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Baijunyao\\LaravelLadda\\LaddaServiceProvider"
+            ]
+        }
+    }
+}
