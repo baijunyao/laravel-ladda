@@ -31,9 +31,6 @@ class LaddaServiceProvider extends ServiceProvider
             __DIR__.'/config/ladda.php' => config_path('ladda.php'),
         ]);
 
-        $kernel = $this->app[Kernel::class];
-        $kernel->pushMiddleware(LaravelLadda::class);
-
         // 自定义 ladda 标签
         Blade::directive('ladda', function ($expression) {
             // 如果指定 name  则使用指定的 name 否则使用配置项中的默认值
