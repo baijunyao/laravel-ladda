@@ -8,9 +8,8 @@ if (!function_exists('ladda')){
      */
     function ladda($name = '')
     {
-        echo $name;die;
         // 如果指定 name  则使用指定的 name 否则使用配置项中的默认值
-        $name = empty($expression) ? config('ladda.name') : $expression;
+        $name = empty($name) ? config('ladda.name') : $name;
         // 获取style
         $style = config('ladda.style');
         // 获取 html 标签
