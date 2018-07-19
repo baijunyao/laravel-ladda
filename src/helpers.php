@@ -6,7 +6,7 @@ if (!function_exists('ladda')){
      *
      * @param string $name
      */
-    function ladda($name = '')
+    function ladda($name = '', $class = '')
     {
         // 如果指定 name  则使用指定的 name 否则使用配置项中的默认值
         $name = empty($name) ? config('ladda.name') : $name;
@@ -14,6 +14,6 @@ if (!function_exists('ladda')){
         $style = config('ladda.style');
         // 获取 html 标签
         $html = file_get_contents(resource_path('views/vendor/ladda/submit.blade.php'));
-        return str_replace(['#submit#', '#style#'], [$name, $style], $html);
+        return str_replace(['#submit#', '#style#', '#class#'], [$name, $style, $class], $html);
     }
 }

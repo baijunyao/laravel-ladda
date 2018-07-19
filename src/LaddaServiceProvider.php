@@ -33,13 +33,10 @@ class LaddaServiceProvider extends ServiceProvider
 
         // 自定义 ladda 标签
         Blade::directive('ladda', function ($expression) {
-            // 如果指定 name  则使用指定的 name 否则使用配置项中的默认值
-            $name = empty($expression) ? config('ladda.name') : $expression;
-            // 获取style
-            $style = config('ladda.style');
-            // 获取 html 标签
-            $html = file_get_contents(resource_path('views/vendor/ladda/submit.blade.php'));
-            return str_replace(['#submit#', '#style#'], [$name, $style], $html);
+            $expression = explode(',', str_replace(['"', "'", " "], '', $expression));
+            $name = empty($expression[0]) ? config('ladda.name') : $expression[0];
+            $class = empty($expression[1]) ? '' : $expression[1];
+            return ladda($name, $class);
         });
     }
 
