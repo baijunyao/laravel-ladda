@@ -6,6 +6,7 @@ use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\ServiceProvider;
 use Baijunyao\LaravelLadda\Middleware\LaravelLadda;
 use Illuminate\Support\Facades\Blade;
+use Baijunyao\LaravelLadda\Ladda;
 
 class LaddaServiceProvider extends ServiceProvider
 {
@@ -31,13 +32,22 @@ class LaddaServiceProvider extends ServiceProvider
             __DIR__.'/config/ladda.php' => config_path('ladda.php'),
         ]);
 
-        // 自定义 ladda 标签
-        Blade::directive('ladda', function ($expression) {
+        // 自定义 submit 按钮标签
+        Blade::directive('laddasubmit', function ($expression) {
             $expression = explode(',', str_replace(['"', "'", " "], '', $expression));
             $name = empty($expression[0]) ? config('ladda.name') : $expression[0];
             $class = empty($expression[1]) ? '' : $expression[1];
-            return ladda($name, $class);
+            return Ladda::submit($name, $class);
         });
+
+        // 自定义 button 按钮标签
+        Blade::directive('laddabutton', function ($expression) {
+            $expression = explode(',', str_replace(['"', "'", " "], '', $expression));
+            $name = empty($expression[0]) ? config('ladda.name') : $expression[0];
+            $class = empty($expression[1]) ? '' : $expression[1];
+            return Ladda::button($name, $class);
+        });
+
     }
 
     /**
