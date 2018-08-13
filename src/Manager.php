@@ -13,9 +13,9 @@ class Manager extends PluginManager
         $laddaJs = <<<php
 Ladda.bind('.js-laravel-ladda');
 php;
-        $this->cssFile('statics/Ladda-1.0.6/ladda.min.css')
-            ->jsFile('statics/Ladda-1.0.6/spin.min.js')
-            ->jsFile('statics/Ladda-1.0.6/ladda.min.js')
+        $this->cssFile('statics/laravel-ladda/ladda.min.css')
+            ->jsFile('statics/laravel-ladda/spin.min.js')
+            ->jsFile('statics/laravel-ladda/ladda.min.js')
             ->jsContent($laddaJs);
     }
 

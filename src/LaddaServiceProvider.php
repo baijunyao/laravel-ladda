@@ -24,18 +24,18 @@ class LaddaServiceProvider extends ServiceProvider
 
         // 发布 前端页面 组件
         $this->publishes([
-            __DIR__.'/resources/views' => resource_path('views/vendor/ladda'),
+            __DIR__.'/resources/views' => resource_path('views/vendor/laravel-ladda'),
         ]);
 
         // 发布配置项
         $this->publishes([
-            __DIR__.'/config/ladda.php' => config_path('ladda.php'),
+            __DIR__.'/config/laravel-ladda.php' => config_path('laravel-ladda.php'),
         ]);
 
         // 自定义 submit 按钮标签
         Blade::directive('laddasubmit', function ($expression) {
             $expression = explode(',', str_replace(['"', "'", " "], '', $expression));
-            $name = empty($expression[0]) ? config('ladda.name') : $expression[0];
+            $name = empty($expression[0]) ? config('laravel-ladda.name') : $expression[0];
             $class = empty($expression[1]) ? '' : $expression[1];
             return Ladda::submit($name, $class);
         });
@@ -43,7 +43,7 @@ class LaddaServiceProvider extends ServiceProvider
         // 自定义 button 按钮标签
         Blade::directive('laddabutton', function ($expression) {
             $expression = explode(',', str_replace(['"', "'", " "], '', $expression));
-            $name = empty($expression[0]) ? config('ladda.name') : $expression[0];
+            $name = empty($expression[0]) ? config('laravel-ladda.name') : $expression[0];
             $class = empty($expression[1]) ? '' : $expression[1];
             return Ladda::button($name, $class);
         });

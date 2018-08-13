@@ -16,11 +16,11 @@ class Ladda
     static public function create($name = '', $class = '', $type = 'submit')
     {
         // 如果指定 name  则使用指定的 name 否则使用配置项中的默认值
-        $name = empty($name) ? config('ladda.name') : $name;
+        $name = empty($name) ? config('laravel-ladda.name') : $name;
         // 获取style
-        $style = config('ladda.style');
+        $style = config('laravel-ladda.style');
         // 获取 html 标签
-        $html = file_get_contents(resource_path('views/vendor/ladda/submit.blade.php'));
+        $html = file_get_contents(resource_path('views/vendor/laravel-ladda/submit.blade.php'));
         return str_replace(['#class#', '#style#', '#type#', '#name#'], [$class, $style, $type, $name], $html);
     }
 
